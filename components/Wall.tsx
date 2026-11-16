@@ -2,11 +2,13 @@
 
 import { useEffect, useRef,useState } from "react";
 import { supabase,TABLE, BUCKET, type Post } from "@/lib/supabase";
+import profilePhoto from "../assets/profile.jpg";
 
 // ---- Profile config: edit these ----
 const PROFILE_NAME = "Nixon Lemon";
 const NETWORK = "N/A";
 const CITY = "Baguio City, PH";
+const PROFILE_PHOTO = profilePhoto.src;
 // ------------------------------------
 const MAX = 280;
 //photo upload
@@ -104,7 +106,9 @@ export default function Wall({ initialPosts }: { initialPosts: Post[] }) {
 
       <div className="layout">
         <aside className="sidebar">
-          <div className="avatar" aria-hidden>{PROFILE_NAME[0]}</div>
+       <div className="profile-photo">
+          <img src={PROFILE_PHOTO} alt="Profile"/>
+        </div>
           <h1>{PROFILE_NAME}</h1>
           <p className="sub">wall</p>
           <button className="infobtn" type="button">Information</button>
