@@ -54,10 +54,65 @@ section{margin-top:26px}
 .dtitle{margin-top:8px!important;font-size:13px}
 .dtitle b{color:#334155}
 .dhint{font-size:11px;color:#94a3b8;margin-top:2px!important}
-.chosen{display:flex;align-items:flex-end;gap:14px}
+/* .chosen{display:flex;align-items:flex-end;gap:14px} */
 .chosen img{max-height:150px;max-width:100%;border-radius:8px;border:1px solid #e5e7eb}
 .chosen button{background:none;border:0;color:#dc2626;cursor:pointer;font:inherit;font-size:14px}
 .postimg{display:block;margin-top:14px;max-width:100%;max-height:480px;border-radius:8px}
+
+.chosen{display:flex;align-items:center;justify-content:center;width:100%}
+
+.chosen-image{
+  position:relative;
+  display:inline-block;
+  animation:pop-in .25s cubic-bezier(.2,.9,.3,1.2);
+}
+.chosen-image img{
+  display:block;
+  max-height:170px;
+  max-width:100%;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  box-shadow:0 6px 18px rgba(15,23,42,.15);
+}
+
+.remove-photo{
+  position:absolute;
+  top:-12px;
+  right:-12px;
+  width:30px;
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  color:#fff;
+  background:rgba(15,23,42,.78);
+  backdrop-filter:blur(4px);
+  border:2px solid #fff;
+  border-radius:50%;
+  box-shadow:0 3px 10px rgba(15,23,42,.35);
+  cursor:pointer;
+  transition:background .2s,transform .2s,box-shadow .2s;
+}
+/* bigger invisible tap area for touch screens */
+.remove-photo::after{content:"";position:absolute;inset:-8px;border-radius:50%}
+
+.remove-photo:hover{
+  background:#ef4444;
+  transform:rotate(90deg) scale(1.12);
+  box-shadow:0 4px 14px rgba(239,68,68,.55);
+}
+.remove-photo:active{transform:rotate(90deg) scale(.92)}
+.remove-photo:focus-visible{outline:3px solid #93c5fd;outline-offset:2px}
+
+@keyframes pop-in{
+  from{opacity:0;transform:scale(.92)}
+  to{opacity:1;transform:scale(1)}
+}
+@media(prefers-reduced-motion:reduce){
+  .chosen-image,.remove-photo{animation:none;transition:none}
+  .remove-photo:hover{transform:none}
+}
 
 @media(max-width:800px){
   .shell{padding:0 0 24px}
@@ -92,6 +147,7 @@ section{margin-top:26px}
   .post p{font-size:16px}
   .postimg{width:100%;max-height:360px;object-fit:cover}
 }
+
 
 @media(max-width:380px){
   .sidebar{grid-template-columns:60px 1fr}

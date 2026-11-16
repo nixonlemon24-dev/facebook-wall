@@ -177,16 +177,25 @@ export default function Wall({ initialPosts }: { initialPosts: Post[] }) {
 
         {preview ? (
           <div className="chosen">
-            <img src={preview} alt="Selected photo" />
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                pick(null);
-              }}
-            >
-              Remove
-            </button>
+            <div className="chosen-image">
+              <img src={preview} alt="Selected preview" />
+
+                <button
+                  type="button"
+                  className="remove-photo"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    pick(null);
+                  }}
+                  aria-label="Remove photo"
+                  title="Remove photo"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      strokeWidth="3" strokeLinecap="round" aria-hidden>
+                    <path d="M6 6l12 12M18 6L6 18" />
+                  </svg>
+                </button>
+            </div>
           </div>
         ) : (
           <>
